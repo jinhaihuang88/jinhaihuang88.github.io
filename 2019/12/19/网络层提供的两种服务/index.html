@@ -1,0 +1,301 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="欢迎你的到来">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+<meta name="keywords" content="" />
+
+
+<meta name="description" content="网络层提供的两种服务1、虚电路服务（Virtual-Circuit 简称VC）1.1 概念虚电路表示这只是一条逻辑上的连接，许多网络体系结构使用的是虚电路服务，如ATM和电信网。 其中因为电信网..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    网络层提供的两种服务 |
+    
+    欢迎你的到来
+</title>
+
+<link rel="alternate" href="/atom.xml" title="欢迎你的到来" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+    
+<div class="hide">
+    <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
+
+
+
+
+    
+
+<meta name="generator" content="Hexo 4.1.1"></head>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    http://snippet.shenliyang.com/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='John Doe'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">
+                        欢迎你的到来</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/工具/"><i class="fa "></i>
+                                工具</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="网络层提供的两种服务">
+            
+            网络层提供的两种服务
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2019/12/19</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="网络层提供的两种服务"><a href="#网络层提供的两种服务" class="headerlink" title="网络层提供的两种服务"></a>网络层提供的两种服务</h1><h2 id="1、虚电路服务（Virtual-Circuit-简称VC）"><a href="#1、虚电路服务（Virtual-Circuit-简称VC）" class="headerlink" title="1、虚电路服务（Virtual-Circuit 简称VC）"></a>1、虚电路服务（Virtual-Circuit 简称VC）</h2><h3 id="1-1-概念"><a href="#1-1-概念" class="headerlink" title="1.1 概念"></a>1.1 概念</h3><p>虚电路表示这只是一条逻辑上的连接，许多网络体系结构使用的是虚电路服务，如ATM和电信网。 其中因为电信网的终端(即电话机)简单，没有差错处理的高级功能，所以网络可以做得复杂一些，电信网进行的是面向连接的通信方式，使用昂贵的程控交换机（为了保证传输的可靠性），<br>从而向用户提供可靠传输的服务。因此电信网可以把用户电话机产生的语音信号可靠地传输到对方的电话机。     </p>
+<h3 id="1-2-一条虚拟电路的组成部分"><a href="#1-2-一条虚拟电路的组成部分" class="headerlink" title="1.2 一条虚拟电路的组成部分"></a>1.2 一条虚拟电路的组成部分</h3><p>（1）源主机和目的主机之间的路径（一些列链路和路由器）<br>（2）路径中每一段链路都有一个VC号<br>（3）路径中的每个路由器都有一个转发表<br>   每一次IP数据报跨越一台路由器创建一个新的连接，就在这个路由器的转发表中增加一个新的连接项。同样，每次施放一个链接，就从表中删除这一项<br><img src="/imgs/%E8%99%9A%E7%94%B5%E8%B7%AF.png" alt="avatar"></p>
+<h3 id="1-3-虚电路服务的三个阶段："><a href="#1-3-虚电路服务的三个阶段：" class="headerlink" title="1.3 虚电路服务的三个阶段："></a>1.3 虚电路服务的三个阶段：</h3><p>   虚电路的建立、数据传输、虚电路的释放。<br>   在虚电路建立后，网络向用户提供的服务就好像在两个主机之间建立了一对穿过网络的数字管道。所有发送到的分组都按顺序进入管道，然后按照先进先出的原则沿着此管道传送到目的站主机。所以到达目的站的分组顺序就与发送时的顺序一致，因此网络提供虚电路服务对通信的服务质量有较好的保证。<br>   数据传送的简单例子：有一条线路为：A-&gt;R1-&gt;R2-&gt;B(其中A和B是主机，R1和R2是路由器)，三条链路的VC号依次是11、22、33，IP数据报离开A的时候，首部中的VC字段为11，然后经过R1后，首部中的VC字段改为22，然后经过R2时将首部中的VC字段变为33。</p>
+<h2 id="2、数据报服务（Datagram-Network）"><a href="#2、数据报服务（Datagram-Network）" class="headerlink" title="2、数据报服务（Datagram Network）"></a>2、数据报服务（Datagram Network）</h2><h3 id="2-1-介绍"><a href="#2-1-介绍" class="headerlink" title="2.1 介绍"></a>2.1 介绍</h3><p>因特网采用的是数据报服务，相比电信网中的电话机，计算机有很强的差错处理功能。因此因特网可以采用数据报服务。数据报服务是不提供可靠传输服务的，在网络层上只是简单提供无连接的、简单灵活的、尽最大努力交付的数据报服务。  </p>
+<h3 id="2-2-特点"><a href="#2-2-特点" class="headerlink" title="2.2 特点"></a>2.2 特点</h3><p>（1）网络在发送分组时不需要先建立连接。每一个分组（即 IP数据报）独立发送，与其前后的分组无关（不进行编号）。</p>
+<p>（2）网络层不提供服务质量的承诺。即所传送的分组可能出错、丢失、重复和失序（不按序到达终点），当然也不保证分组传送的时限。</p>
+<h3 id="2-3-优点"><a href="#2-3-优点" class="headerlink" title="2.3 优点"></a>2.3 优点</h3><p>（1）由于传输网络不提供端到端的可靠传输服务，这就使网络中的路由器可以做得比较简单，而且价格低廉（与电信网的交换机相比较）。<br>（2）如果主机（即端系统）中的进程之间的通信需要是可靠的，那么就由网络的主机中的运输层负责（包括差错处理、流量控制等）。<br>（3）网络的造价大大降低，运行方式灵活，能够适应多种应用。<br><img src="/imgs/1.%E6%95%B0%E6%8D%AE%E6%8A%A5%E6%9C%8D%E5%8A%A1.png" alt="avatar"><br><img src="/imgs/1.%E6%AF%94%E8%BE%83.png" alt="avatar"></p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/2019/12/19/%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86/" class="pre-post btn btn-default" title='子网划分'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            子网划分</span>
+    </a>
+    
+    
+    <a href="/2019/12/19/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E7%9A%84%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6/" class="next-post btn btn-default" title='数据链路层的流量控制'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            数据链路层的流量控制</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+
+<div id="vcomments" class="valine"></div>
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/assets/valine.min.js"></script>
+
+<script>
+new Valine({
+    av: AV,
+    el: '#vcomments',
+    appId: 'xOKV9J4UeQAtVkvnJC7Kq2Jn-gzGzoHsz',
+    appKey: 'erIpQac4azoCmgfBB7Dl9maa',
+    placeholder: '说点什么吧',
+    notify: false,
+    verify: true,
+    avatar: 'mm',
+    meta: 'nick,mail'.split(','),
+    pageSize: '10',
+    path: window.location.pathname,
+    lang: 'zh-CN'.toLowerCase()
+})
+</script>
+
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#网络层提供的两种服务"><span class="toc-text">网络层提供的两种服务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、虚电路服务（Virtual-Circuit-简称VC）"><span class="toc-text">1、虚电路服务（Virtual-Circuit 简称VC）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-概念"><span class="toc-text">1.1 概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-一条虚拟电路的组成部分"><span class="toc-text">1.2 一条虚拟电路的组成部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-虚电路服务的三个阶段："><span class="toc-text">1.3 虚电路服务的三个阶段：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、数据报服务（Datagram-Network）"><span class="toc-text">2、数据报服务（Datagram Network）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-介绍"><span class="toc-text">2.1 介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-特点"><span class="toc-text">2.2 特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-优点"><span class="toc-text">2.3 优点</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2019
+                    
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+</body>
+</html>
