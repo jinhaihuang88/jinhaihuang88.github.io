@@ -9,7 +9,7 @@
     <meta http-equiv="Cache-Control" content="no-siteapp">
     <meta http-equiv="Cache-Control" content="no-transform">
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta name="apple-mobile-web-app-capable" content="欢迎你的到来">
+    <meta name="apple-mobile-web-app-capable" content="hai的博客">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no,email=no,adress=no">
     <meta name="browsermode" content="application">
@@ -22,7 +22,7 @@
 <meta name="keywords" content="" />
 
 
-<meta name="description" content="子网划分1. 子网的概念子网是指一个ip地址上生成的逻辑网络，它可以让一个网络地址跨越多个物理网络，即一个网络地址代表多个网络。在划分了子网后，ip地址的网络号是不变的，因此在局域网的外部看，这..." />
+<meta name="description" content="" />
 
 
 <meta name="robots" content="all" />
@@ -33,10 +33,12 @@
 
 <title>
     
-    欢迎你的到来
+    归档：2019 |
+    
+    hai的博客
 </title>
 
-<link rel="alternate" href="/atom.xml" title="欢迎你的到来" type="application/atom+xml">
+<link rel="alternate" href="/atom.xml" title="hai的博客" type="application/atom+xml">
 
 
 <link rel="icon" href="/favicon.ico">
@@ -95,7 +97,7 @@
                         <i class="fa fa-bars"></i>
                     </span>
                     <a class="navbar-brand" href="http://yoursite.com">
-                        欢迎你的到来</a>
+                        hai的博客</a>
                 </div>
                 <div class="collapse navbar-collapse" id="main-menu">
                     <ul class="menu">
@@ -135,20 +137,260 @@
         <div class="container">
             <div class="row">
                 <main class="col-md-8 main-content ">
-                    <div>
-    
-    <article class="post">
-    <h1 class="post-head">
-        
-    </h1>
-    <div class="post-body">
-        <h1 id="子网划分"><a href="#子网划分" class="headerlink" title="子网划分"></a>子网划分</h1><h2 id="1-子网的概念"><a href="#1-子网的概念" class="headerlink" title="1. 子网的概念"></a>1. 子网的概念</h2><p>子网是指一个ip地址上生成的逻辑网络，它可以让一个网络地址跨越多个物理网络，即一个网络地址代表多个网络。在划分了子网后，ip地址的网络号是不变的，因此在局域网的外部看，这里仍然只存在一个网络，即网络号所代表的那个网络。但是在网络内部分为多个子网。</p>
-<h2 id="2-如何划分子网及确定子网掩码"><a href="#2-如何划分子网及确定子网掩码" class="headerlink" title="2. 如何划分子网及确定子网掩码"></a>2. 如何划分子网及确定子网掩码</h2><p>划分子网主要从以下方面考虑：<br/><br>（1）网络中物理段的数量(即要划分的子网数量)<br>（2）每个物理段（子网）中的主机的数量。</p>
-<p>确定子网掩码的步骤：<br/><br>(1)第一步：确定物理网段的数量，将其转换为二进制数，并确定位数n。<br/><br>(2)第二步：按照ip地址的类型写出其缺省子网掩码。<br/><br>(3)第三步：将子网掩码中与主机号的前n位对应的位置置1，其余位置置0。<br/><br>例如：要将一个ip地址划分为4个子网：<br>a.首先确定物理网段：10的二进制值为1010，共4位，所以n=4。<br>b.根据ip地址类型写出缺省子网掩码<br>c.对于不同的ip地址：<br/><br>A类地址：得到的子网掩码为11111111.11110000.00000000.00000000，化为十进制得255.240.0.0<br/><br>B类地址：得到的子网掩码为11111111.11111111.11110000.00000000，化为十进制得255.255.240.0<br/><br>C类地址：得到的子网掩码为11111111.11111111.11111111.11110000，化为十进制得255.255.240.0<br/><br>注意：划分4个子网，5个子网和6个子网的子网掩码是一样的，同为255，255，255，224.这是因为它们二进制值的位数都是3位。所以子网掩码只受子网数量的二进制值的位数的影响。<br>计算子网数量：<br/><br>（1）观察子网掩码的二进制形式，确定作为子网号的位数n。<br/><br>（2）子网数量为2的n次方-2。<br/><br>例如：有一个子网掩码：255.255.255.224其二进制为：11111111.11111111.11111111.11100000。<br>由此可得，n=3，2的3次方为8.说明子网有8种情况，分别为：000，111，001，010，100，110，011，101。<br>但因为000代表网络本身，111代表广播地址。它们是不使用的，所以子网数量只有6个。</p>
-
+                    <div id="main">
+    <div class="timebox">
+        <div class="timeline">
+            <ul>
+                
+                
+                
+                
+                
+                
+                <h2>
+                    2019
+                </h2>
+                
+                
+                <li>
+                    
+                    <h3>
+                        20<span>
+                            12月</span>
+                    </h3>
+                    <a href="/2019/12/20/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90_PHPsetcookie%E5%87%BD%E6%95%B0/" title="学习资源_PHPsetcookie函数" target="_blank">
+                        学习资源_PHPsetcookie函数</a>
+                </li>
+                
+                
+                
+                
+                
+                
+                <li>
+                    
+                    <h3>
+                        20<span>
+                            12月</span>
+                    </h3>
+                    <a href="/2019/12/20/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90_%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81%E4%B8%8E%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86/" title="学习资源_子网掩码与子网划分" target="_blank">
+                        学习资源_子网掩码与子网划分</a>
+                </li>
+                
+                
+                
+                
+                
+                
+                <li>
+                    
+                    <h3>
+                        20<span>
+                            12月</span>
+                    </h3>
+                    <a href="/2019/12/20/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90_%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E5%8F%8A%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81/" title="学习资源_子网划分及子网掩码" target="_blank">
+                        学习资源_子网划分及子网掩码</a>
+                </li>
+                
+                
+                
+                
+                
+                
+                <li>
+                    
+                    <h3>
+                        20<span>
+                            12月</span>
+                    </h3>
+                    <a href="/2019/12/20/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90_%E7%BD%91%E6%98%93%E4%BA%91%E4%B8%8A%E9%83%A8%E7%BD%B2%E7%BD%91%E7%AB%99/" title="学习资源_网易云上部署网站" target="_blank">
+                        学习资源_网易云上部署网站</a>
+                </li>
+                
+                
+                
+                
+                
+                
+                <li>
+                    
+                    <h3>
+                        20<span>
+                            12月</span>
+                    </h3>
+                    <a href="/2019/12/20/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90_%E7%BD%91%E7%BB%9C%E5%B1%82/" title="学习资源_网络层" target="_blank">
+                        学习资源_网络层</a>
+                </li>
+                
+                
+                
+                
+                
+                
+                <li>
+                    
+                    <h3>
+                        20<span>
+                            12月</span>
+                    </h3>
+                    <a href="/2019/12/20/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90_%E7%BD%91%E7%BB%9C%E5%B1%82%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%9C%8D%E5%8A%A1/" title="学习资源_网络层的两种服务" target="_blank">
+                        学习资源_网络层的两种服务</a>
+                </li>
+                
+                
+                
+                
+                
+                
+                <li>
+                    
+                    <h3>
+                        20<span>
+                            12月</span>
+                    </h3>
+                    <a href="/2019/12/20/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90_%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" title="学习资源_数据链路层" target="_blank">
+                        学习资源_数据链路层</a>
+                </li>
+                
+                
+                
+                
+                
+                
+                <li>
+                    
+                    <h3>
+                        20<span>
+                            12月</span>
+                    </h3>
+                    <a href="/2019/12/20/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90_JAVA%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" title="学习资源_JAVA学习路线" target="_blank">
+                        学习资源_JAVA学习路线</a>
+                </li>
+                
+                
+                
+                
+                
+                
+                <li>
+                    
+                    <h3>
+                        20<span>
+                            12月</span>
+                    </h3>
+                    <a href="/2019/12/20/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90_Github%E6%B5%8F%E8%A7%88%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96/" title="学习资源_Github浏览速度优化" target="_blank">
+                        学习资源_Github浏览速度优化</a>
+                </li>
+                
+                
+                
+                
+                
+                
+                <li>
+                    
+                    <h3>
+                        20<span>
+                            12月</span>
+                    </h3>
+                    <a href="/2019/12/20/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90_ATM%E7%BD%91%E7%BB%9C/" title="学习资源_ATM网络" target="_blank">
+                        学习资源_ATM网络</a>
+                </li>
+                
+                
+                
+                
+                
+                
+                <li>
+                    
+                    <h3>
+                        19<span>
+                            12月</span>
+                    </h3>
+                    <a href="/2019/12/19/%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81/" title="子网掩码" target="_blank">
+                        子网掩码</a>
+                </li>
+                
+                
+                
+                
+                
+                
+                <li>
+                    
+                    <h3>
+                        19<span>
+                            12月</span>
+                    </h3>
+                    <a href="/2019/12/19/%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86/" title="子网划分" target="_blank">
+                        子网划分</a>
+                </li>
+                
+                
+                
+                
+                
+                
+                <li>
+                    
+                    <h3>
+                        19<span>
+                            12月</span>
+                    </h3>
+                    <a href="/2019/12/19/%E7%BD%91%E7%BB%9C%E5%B1%82%E6%8F%90%E4%BE%9B%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%9C%8D%E5%8A%A1/" title="网络层提供的两种服务" target="_blank">
+                        网络层提供的两种服务</a>
+                </li>
+                
+                
+                
+                
+                
+                
+                <li>
+                    
+                    <h3>
+                        19<span>
+                            12月</span>
+                    </h3>
+                    <a href="/2019/12/19/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E7%9A%84%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6/" title="数据链路层的流量控制" target="_blank">
+                        数据链路层的流量控制</a>
+                </li>
+                
+                
+                
+                
+                
+                
+                <li>
+                    
+                    <h3>
+                        19<span>
+                            12月</span>
+                    </h3>
+                    <a href="/2019/12/19/CSMA-CA%E5%8D%8F%E8%AE%AE/" title="CSMA-CA协议" target="_blank">
+                        CSMA-CA协议</a>
+                </li>
+                
+                
+                
+                
+                
+                
+                <li>
+                    
+                    <h3>
+                        19<span>
+                            12月</span>
+                    </h3>
+                    <a href="/2019/12/19/ATM%E7%BD%91%E7%BB%9C/" title="ATM网络" target="_blank">
+                        ATM网络</a>
+                </li>
+                
+                
+            </ul>
+        </div>
     </div>
-</article>
-    
 </div>
                 </main>
                 
@@ -244,7 +486,7 @@
     <h3 class="title">
         归档
     </h3>
-    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/"><i class="fa" aria-hidden="true">2019年12月</i></a><span class="archive-list-count">6</span></li></ul>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/"><i class="fa" aria-hidden="true">2019年12月</i></a><span class="archive-list-count">16</span></li></ul>
 </div>
 
     

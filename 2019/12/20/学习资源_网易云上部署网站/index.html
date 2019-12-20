@@ -22,8 +22,8 @@
 <meta name="keywords" content="" />
 
 
-<meta name="description" content="数据链路层的流量控制流量控制涉及对链路上的帧的发送速率的控制 ，以使接收方有足够的缓冲空间来接收每一个帧。流量控制的方法主要有两种：停等流量控制和滑动窗口流量控制
-1.停止-等待流量控制发送实体..." />
+<meta name="description" content="看这篇博客之前请一定要先看一下另一片博客，链接是http://www.cnblogs.com/-beyond/p/6686166.html
+看完之后，默认你知道怎么将代码上传到新浪云SAE，并且..." />
 
 
 <meta name="robots" content="all" />
@@ -34,7 +34,7 @@
 
 <title>
     
-    数据链路层的流量控制 |
+    学习资源_网易云上部署网站 |
     
     hai的博客
 </title>
@@ -141,9 +141,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="数据链路层的流量控制">
+        <h1 id="学习资源_网易云上部署网站">
             
-            数据链路层的流量控制
+            学习资源_网易云上部署网站
             
         </h1>
         <div class="post-meta">
@@ -166,7 +166,7 @@
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
         <span class="date-meta">
-            2019/12/19</span>
+            2019/12/20</span>
     </span>
     
     
@@ -176,12 +176,23 @@
     </div>
     
     <div class="post-body post-content">
-        <h1 id="数据链路层的流量控制"><a href="#数据链路层的流量控制" class="headerlink" title="数据链路层的流量控制"></a>数据链路层的流量控制</h1><p>流量控制涉及对链路上的帧的发送速率的控制 ，以使接收方有足够的缓冲空间来接收每一个帧。流量控制的方法主要有两种：停等流量控制和滑动窗口流量控制</p>
-<h2 id="1-停止-等待流量控制"><a href="#1-停止-等待流量控制" class="headerlink" title="1.停止-等待流量控制"></a>1.停止-等待流量控制</h2><p>发送实体发送一个帧，接受实体接收处理完之后必须发回一个对于这个帧的确认表示自己同意接收下一个帧；发送方收到这个确认之后，才能发送下一个帧。所谓停等，接收方能够简单的通过停止发送确认的方式来阻止数据流的发送。发送方每次只能发送一个帧，然后就陷入了等待接收方确认信息的过程，因此传输的效率十分地低。尤其是利用卫星进行通信的时候，卫星的传播延迟是270毫秒，每发一帧要540毫秒。</p>
-<h2 id="2-滑动窗口流量控制"><a href="#2-滑动窗口流量控制" class="headerlink" title="2.滑动窗口流量控制"></a>2.滑动窗口流量控制</h2><p>发送窗口：在任意的时刻，发送发都维持一组连续的允许发送的帧的序号，称为发送窗口；<br>接受窗口：接受方维持一组连续的允许接受帧的序号。<br>发送窗口是用来对发送方进行流量控制，而发送窗口的大小W<sub>T</sub>代表在还没有收到对方确认信息的情况下发送方最多还可以发送多少个数据帧。同理，在接收端设置接收窗口是为了控制可以接收哪些数据帧而不可以接收哪些帧 。在接收方只有当收到的数据帧的序号落入接收窗口内才允许将该数据帧收下 。若接收到的数据帧落在接收窗口之外 ，则一律将其丢弃。<br>发送窗口和接受窗口的工作原理：<br><img src="/imgs/03-发送窗口.PNG"/><br>发送窗口控制发送端的发送速率<br><img src="/imgs/03-接受窗口.PNG"/>  </p>
-<p>每一个帧都分配有一个序号。在发送端，每收到一个确认帧，发送窗口就向前滑动一个帧的位置，当发送窗口内没有可以发送的帧 ，即窗口内的帧全部都是己发送但未收到确认的帧 ，发送方就会停止发送 ，直到收到接收方发送的确认帧使窗口移动 ，窗口内有可以发送的帧，才开始继续发送 。<br>在接收端，接收端需要按照序号接收，当收到数据帧后 ，将窗口向前移一个帧的位置，并发回确认帧 ，若收到的数据帧落在接收窗口之外则一律丢弃 。</p>
-<h2 id="3-注意点"><a href="#3-注意点" class="headerlink" title="3.注意点"></a>3.注意点</h2><p>（1）为了节省存储控件，序号是循环的。<br/><br>（2）滑动窗口里面的只是序号，滑动到对应的窗口就发送或接受对应的帧，而不是代表窗口里就是这个帧，因为有专门的缓冲区来存这些帧，滑动窗滑到哪里，就在缓冲区中取对应序号的帧.  </p>
-<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h2><p> 相较于停止-等待流量控制，滑动窗口流量控制的效率明显提高了，假设传输延迟和发送时间之和为T，窗口大小为N。如果N&lt;T,那么最多把N个帧一起发送，没法再多发送了，因为循环序号的问题，不能同时存在两个同样序号的帧，所以最多一次发送N个帧，信道会有空闲，效率为N/T。如果N&gt;=T,则效率可以达到100%。 <br/><br> 停止-等待流量控制，滑动窗口流量控制都是通过接受方把自己的反馈（ACK）发送给接收方，发送方通过这个反馈判断接受方的状态再进行发送。停止-等待协议可以看成是发送窗口为1的滑动窗口协议。</p>
+        <p>看这篇博客之前请一定要先看一下另一片博客，链接是<a href="http://www.cnblogs.com/-beyond/p/6686166.html" target="_blank" rel="noopener">http://www.cnblogs.com/-beyond/p/6686166.html</a></p>
+<p>看完之后，默认你知道怎么将代码上传到新浪云SAE，并且能够成功运行，连接数据库之前，你必须先创建有一个应用。</p>
+<p>现在我创建一个名称为sampleone的应用，如下图</p>
+<p>点击左侧的代码管理，选在右侧创建一个版本</p>
+<p>然后就会看到下面的页面</p>
+<p>你可以选择编辑代码，也可以选择上传代码包，但是在此，为了简便，我只创建一个代码文件，直接在index.php里面</p>
+<p>你已经注意到，数据库的几个参数都没有，这咋办，请你看下面</p>
+<p>选择共享型的MySQL，并创建版本</p>
+<p>你可能发现，数据库的名字已经确定了，以app开头，加上你的应用名称，这与你在本机上的数据库名不同，所以，请你上传你的数据库之前，请将数据库名改为app加相应的应用名</p>
+<p> 点击上图中的管理，不要直接点数据导入，如果你会docker方面的技术，可以尝试一下</p>
+<p>点击导入，然后选择文件导入</p>
+<p>导入成功后返回到如下界面，选择详情</p>
+<p>就会看到</p>
+<p>图片中圈住的区域就是就是数据库连接的各个参数，$host的值就是主库地址（或者从库地址），$db=”app_sampleone”;</p>
+<p>在代码中修改数据库连接参数就能连接了</p>
+<p> 测试结果，完美运行！</p>
+<p>转自：<a href="https://www.cnblogs.com/-beyond/p/6739737.html" target="_blank" rel="noopener">https://www.cnblogs.com/-beyond/p/6739737.html</a></p>
 
     </div>
     
@@ -200,17 +211,17 @@
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/2019/12/19/%E7%BD%91%E7%BB%9C%E5%B1%82%E6%8F%90%E4%BE%9B%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%9C%8D%E5%8A%A1/" class="pre-post btn btn-default" title='网络层提供的两种服务'>
+    <a href="/2019/12/20/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90_%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E5%8F%8A%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81/" class="pre-post btn btn-default" title='学习资源_子网划分及子网掩码'>
         <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
         <span class="hidden-xs">
-            网络层提供的两种服务</span>
+            学习资源_子网划分及子网掩码</span>
     </a>
     
     
-    <a href="/2019/12/19/CSMA-CA%E5%8D%8F%E8%AE%AE/" class="next-post btn btn-default" title='CSMA-CA协议'>
+    <a href="/2019/12/20/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90_%E7%BD%91%E7%BB%9C%E5%B1%82/" class="next-post btn btn-default" title='学习资源_网络层'>
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            CSMA-CA协议</span><i class="fa fa-angle-right fa-fw"></i>
+            学习资源_网络层</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
 </div>
@@ -251,7 +262,7 @@ new Valine({
             文章目录
         </h3>
         
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#数据链路层的流量控制"><span class="toc-text">数据链路层的流量控制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-停止-等待流量控制"><span class="toc-text">1.停止-等待流量控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-滑动窗口流量控制"><span class="toc-text">2.滑动窗口流量控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-注意点"><span class="toc-text">3.注意点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-总结"><span class="toc-text">4.总结</span></a></li></ol></li></ol>
+        <p>暂无目录</p>
         
     </div>
 </aside>

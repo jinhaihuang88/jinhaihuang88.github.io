@@ -22,8 +22,8 @@
 <meta name="keywords" content="" />
 
 
-<meta name="description" content="数据链路层的流量控制流量控制涉及对链路上的帧的发送速率的控制 ，以使接收方有足够的缓冲空间来接收每一个帧。流量控制的方法主要有两种：停等流量控制和滑动窗口流量控制
-1.停止-等待流量控制发送实体..." />
+<meta name="description" content="老实说，GitHub 在国内的使用体验并不算太好，这其中最大的原因就是网络了。
+GitHub 访问起来比较卡，这个看起来貌似无解。国内的 gitee 网速倒是可以，但是无法代替 GitHub，个..." />
 
 
 <meta name="robots" content="all" />
@@ -34,7 +34,7 @@
 
 <title>
     
-    数据链路层的流量控制 |
+    学习资源_Github浏览速度优化 |
     
     hai的博客
 </title>
@@ -141,9 +141,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="数据链路层的流量控制">
+        <h1 id="学习资源_Github浏览速度优化">
             
-            数据链路层的流量控制
+            学习资源_Github浏览速度优化
             
         </h1>
         <div class="post-meta">
@@ -166,7 +166,7 @@
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
         <span class="date-meta">
-            2019/12/19</span>
+            2019/12/20</span>
     </span>
     
     
@@ -176,12 +176,34 @@
     </div>
     
     <div class="post-body post-content">
-        <h1 id="数据链路层的流量控制"><a href="#数据链路层的流量控制" class="headerlink" title="数据链路层的流量控制"></a>数据链路层的流量控制</h1><p>流量控制涉及对链路上的帧的发送速率的控制 ，以使接收方有足够的缓冲空间来接收每一个帧。流量控制的方法主要有两种：停等流量控制和滑动窗口流量控制</p>
-<h2 id="1-停止-等待流量控制"><a href="#1-停止-等待流量控制" class="headerlink" title="1.停止-等待流量控制"></a>1.停止-等待流量控制</h2><p>发送实体发送一个帧，接受实体接收处理完之后必须发回一个对于这个帧的确认表示自己同意接收下一个帧；发送方收到这个确认之后，才能发送下一个帧。所谓停等，接收方能够简单的通过停止发送确认的方式来阻止数据流的发送。发送方每次只能发送一个帧，然后就陷入了等待接收方确认信息的过程，因此传输的效率十分地低。尤其是利用卫星进行通信的时候，卫星的传播延迟是270毫秒，每发一帧要540毫秒。</p>
-<h2 id="2-滑动窗口流量控制"><a href="#2-滑动窗口流量控制" class="headerlink" title="2.滑动窗口流量控制"></a>2.滑动窗口流量控制</h2><p>发送窗口：在任意的时刻，发送发都维持一组连续的允许发送的帧的序号，称为发送窗口；<br>接受窗口：接受方维持一组连续的允许接受帧的序号。<br>发送窗口是用来对发送方进行流量控制，而发送窗口的大小W<sub>T</sub>代表在还没有收到对方确认信息的情况下发送方最多还可以发送多少个数据帧。同理，在接收端设置接收窗口是为了控制可以接收哪些数据帧而不可以接收哪些帧 。在接收方只有当收到的数据帧的序号落入接收窗口内才允许将该数据帧收下 。若接收到的数据帧落在接收窗口之外 ，则一律将其丢弃。<br>发送窗口和接受窗口的工作原理：<br><img src="/imgs/03-发送窗口.PNG"/><br>发送窗口控制发送端的发送速率<br><img src="/imgs/03-接受窗口.PNG"/>  </p>
-<p>每一个帧都分配有一个序号。在发送端，每收到一个确认帧，发送窗口就向前滑动一个帧的位置，当发送窗口内没有可以发送的帧 ，即窗口内的帧全部都是己发送但未收到确认的帧 ，发送方就会停止发送 ，直到收到接收方发送的确认帧使窗口移动 ，窗口内有可以发送的帧，才开始继续发送 。<br>在接收端，接收端需要按照序号接收，当收到数据帧后 ，将窗口向前移一个帧的位置，并发回确认帧 ，若收到的数据帧落在接收窗口之外则一律丢弃 。</p>
-<h2 id="3-注意点"><a href="#3-注意点" class="headerlink" title="3.注意点"></a>3.注意点</h2><p>（1）为了节省存储控件，序号是循环的。<br/><br>（2）滑动窗口里面的只是序号，滑动到对应的窗口就发送或接受对应的帧，而不是代表窗口里就是这个帧，因为有专门的缓冲区来存这些帧，滑动窗滑到哪里，就在缓冲区中取对应序号的帧.  </p>
-<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h2><p> 相较于停止-等待流量控制，滑动窗口流量控制的效率明显提高了，假设传输延迟和发送时间之和为T，窗口大小为N。如果N&lt;T,那么最多把N个帧一起发送，没法再多发送了，因为循环序号的问题，不能同时存在两个同样序号的帧，所以最多一次发送N个帧，信道会有空闲，效率为N/T。如果N&gt;=T,则效率可以达到100%。 <br/><br> 停止-等待流量控制，滑动窗口流量控制都是通过接受方把自己的反馈（ACK）发送给接收方，发送方通过这个反馈判断接受方的状态再进行发送。停止-等待协议可以看成是发送窗口为1的滑动窗口协议。</p>
+        <p>老实说，GitHub 在国内的使用体验并不算太好，这其中最大的原因就是网络了。</p>
+<p>GitHub 访问起来比较卡，这个看起来貌似无解。国内的 gitee 网速倒是可以，但是无法代替 GitHub，个人感觉 gitee 上还是开源项目多一些，工具类库要少一些。</p>
+<p>在网络比较卡的情况下，如果我们想在线查看 GitHub 上项目的源码，是非常的不方便，我们需要不断的进入到某个目录中，然后再退出来，再进入到其他目录中，这样每一次都要加载页面，查看起来非常不便。</p>
+<p>今天松哥就给大家介绍两款浏览器插件 SourceGraph 和 Octotree ，使用这两个浏览器插件可以非常方便的在线查看 GitHub 上项目的源码。Chrome 或者 Firefox 都可以安装此插件。</p>
+<p>SourceGraph<br>简介<br>SourceGraph 是一个依据 Apache2.0 开源协议开源的一个工具，集代码查看、review PR、代码搜索等功能于一身。开发者必备。</p>
+<p>支持的浏览器<br>虽然我们大部分情况下可能都是在 Chrome 或者 Firefox 上使用 SourceGraph，不过实际上，SourceGraph 支持的平台可不止 Chrome 和 Firefox ，包括 Vscode 在内的大多数工具都支持，如下：</p>
+<p>可以看到有 Chrome、Firefox、VsCode、Jet Brains全家桶(IDEA、WebStorm 等)、Vi、Sublime、Atom。</p>
+<p>支持的平台<br>那我们用这个都可以浏览哪些网站的代码呢？除了 GitHub 还有哪些平台也受到支持呢？</p>
+<p>可以看到，常见的 GitHub、GitLab、Bitbucket 都获得了支持，还有像 Phabricator、Azure DevOps、AWS CodeCommit 也都有较好的支持。</p>
+<p>安装<br>Firefox 大家可以直接搜索安装，Chrome，要是上网不方便，松哥已经帮大家下载好了，公众号后台回复 sourcegraph，获取 SourceGraph 离线包下载地址，离线包下载后之后，直接拖到浏览器上安装即可。</p>
+<p>这里我就来和大家演示下正常安装，在 Chrome 的 Store 中搜索 SourceGraph ，如下：</p>
+<p>搜到之后点击右边的 添加至 Chrome 按钮即可，我这边因为已经装过了，所以按钮是评分，安装完成之后，浏览器上会多出一个 SourceGraph 图标，如下：</p>
+<p>这样 SourceGraph 就安装好了。</p>
+<p>使用<br>此时我们在 GitHub 上打开任意一个项目，以松哥的微人事为例，如下：</p>
+<p>可以看到，在项目的 Watch 旁边多了一个按钮，这个按钮就是 SourceGraph，我们点击一下，就可以进入到 SourceGraph 页面：</p>
+<p>这就像一个开发工具一样，我们在右边可以轻松的展开项目的包，想看哪个文件就看哪个。上面的搜索框支持正则表达式搜索，可以方便的查找到项目中相关变量的定义。</p>
+<p>SourceGraph 中还可以查看变量被定义或者被引用的位置(这个功能要登录 SourceGraph 后才可以使用)：</p>
+<p>是不是都可以当成 IDE 来用了。</p>
+<p>有了这些功能，我们再在 GitHub 上浏览项目就方便多了，小伙伴们不妨试试。</p>
+<p>Octotree<br>简介<br>Octotree(<a href="https://www.octotree.io/" target="_blank" rel="noopener">https://www.octotree.io/</a>) 是一款浏览器插件，Chrome 和 Firefox 、Opera 对此都有很好的支持。这个插件可以将 GitHub 上项目代码以树形格式展示，而且在展示的列表中，我们可以下载指定的文件，而不需要下载整个项目。</p>
+<p>安装<br>Firefox 安装 Octotree 很容易，问题不大，但是 Chrome 上安装，可能有的小伙伴不太方便，松哥已经将 Chrome 上 Octotree 的离线安装包下载好了，大家在我公众号后台回复 octotree 就可以获取下载链接。</p>
+<p>当然，如果大家方便的话，可以直接在 Chrome 商店中搜索，如下：</p>
+<p>选择第一个免费版的安装就可以了。</p>
+<p>装好之后，浏览器右上角就会有一个相应的图标，如下：</p>
+<p>使用<br>Octotree 安装成功之后，打开一个 GitHub 网页，我们在左边就可以看到 Octotree 插件，如下：</p>
+<p>这样就可以快速打开并浏览一个 GitHub 文件了。</p>
+<p>点击文件名前面的图标，就可以在一个单独的网页中打开这个文件。</p>
+<p>好了，这两个神器就说到这里，小伙伴们不妨试试。<br>————————————————<br>版权声明：本文为CSDN博主「_江南一点雨」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/u012702547/article/details/100533763" target="_blank" rel="noopener">https://blog.csdn.net/u012702547/article/details/100533763</a></p>
 
     </div>
     
@@ -200,17 +222,17 @@
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/2019/12/19/%E7%BD%91%E7%BB%9C%E5%B1%82%E6%8F%90%E4%BE%9B%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%9C%8D%E5%8A%A1/" class="pre-post btn btn-default" title='网络层提供的两种服务'>
+    <a href="/2019/12/20/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90_JAVA%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" class="pre-post btn btn-default" title='学习资源_JAVA学习路线'>
         <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
         <span class="hidden-xs">
-            网络层提供的两种服务</span>
+            学习资源_JAVA学习路线</span>
     </a>
     
     
-    <a href="/2019/12/19/CSMA-CA%E5%8D%8F%E8%AE%AE/" class="next-post btn btn-default" title='CSMA-CA协议'>
+    <a href="/2019/12/20/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90_ATM%E7%BD%91%E7%BB%9C/" class="next-post btn btn-default" title='学习资源_ATM网络'>
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            CSMA-CA协议</span><i class="fa fa-angle-right fa-fw"></i>
+            学习资源_ATM网络</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
 </div>
@@ -251,7 +273,7 @@ new Valine({
             文章目录
         </h3>
         
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#数据链路层的流量控制"><span class="toc-text">数据链路层的流量控制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-停止-等待流量控制"><span class="toc-text">1.停止-等待流量控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-滑动窗口流量控制"><span class="toc-text">2.滑动窗口流量控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-注意点"><span class="toc-text">3.注意点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-总结"><span class="toc-text">4.总结</span></a></li></ol></li></ol>
+        <p>暂无目录</p>
         
     </div>
 </aside>

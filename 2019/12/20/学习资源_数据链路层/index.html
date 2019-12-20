@@ -1,0 +1,327 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="hai的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+<meta name="keywords" content="" />
+
+
+<meta name="description" content="流量控制 、可靠传输与滑动窗口机制流量控制涉及对链路上的帧的发送速率的控制 ，以使接收方有足够的缓冲空间来接收每一个帧。例如，在面向帧的自动重传请求系统中 ，当待确认帧的数量增加时 ，有可能超出..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    学习资源_数据链路层 |
+    
+    hai的博客
+</title>
+
+<link rel="alternate" href="/atom.xml" title="hai的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+    
+<div class="hide">
+    <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
+
+
+
+
+    
+
+<meta name="generator" content="Hexo 4.1.1"></head>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    http://snippet.shenliyang.com/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='John Doe'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">
+                        hai的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/myResourse/"><i class="fa "></i>
+                                学习资源</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="学习资源_数据链路层">
+            
+            学习资源_数据链路层
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2019/12/20</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>流量控制 、可靠传输与滑动窗口机制<br>流量控制涉及对链路上的帧的发送速率的控制 ，以使接收方有足够的缓冲空间来接收每一个帧。例如，在面向帧的自动重传请求系统中 ，当待确认帧的数量增加时 ，有可能超出缓冲存储空间而造成过载 。流量控制的基本方法是由接收方控制发送方发送数据的速率 ，常见的方式有两种 ： 停止-等待协议和滑动窗口协议 。</p>
+<pre><code>停止-等待流量控制基本原理</code></pre><p>发送方每发送一帧 ，都要等待接收方的应答信号 ，之后才能发送下一帧；接收方每接收一帧 ， 都要反馈一个应答信号 ，表示可接收下一帧，如果接收方不反馈应答信号，则发送方必须一直等待。每次只允许发送一帧 ，然后就陷入等待接收方确认信息的过程中 ，因而传输效率很低 。</p>
+<pre><code>滑动窗口流量控制基本原理</code></pre><p>在任意时刻 ，发送方都维持一组连续的允许发送的帧的序号，称为发送窗口；同时接收方也维持一组连续的允许接收帧的序号 ，称为接收窗口。发送窗口用来对发送方进行流量控制，而发送窗口的大小 WT代表在还没有收到对方确认信息的情况下发送方最多还可以发送多少个数据帧。同理，在接收端设置接收窗口是为了控制可以接收哪些数据帧而不可以接收哪些帧 。在接收方只有当收到的数据帧的序号落入接收窗口内才允许将该数据帧收下 。若接收到的数据帧落在接收窗口之外 ，则一律将其丢弃。</p>
+<p>下图给出了发送窗口和接收窗口的工作原理。</p>
+<p>发送窗口控制发送端的发送速率</p>
+<p>WR=1 的接收窗口的意义<br>在发送端，每收到一个确认帧，发送窗口就向前滑动一个帧的位置，当发送窗口内没有可以发送的帧 （即窗口内的帧全部是己发送但未收到确认的帧） ，发送方就会停止发送 ，直到收到接收方发送的确认帧使窗口移动 ，窗口内有可以发送的帧，之后才开始继续发送 。</p>
+<p>在接收端 ，当收到数据帧后 ，将窗口向前移一个位置，并发回确认帧 ，若收到的数据帧落在接收窗口之外则一律丢弃 。</p>
+<p>滑动窗口有以下重要特性 ：</p>
+<p>1)  只有接收窗口向前滑动时（同时接收方发送了确认帧），发送窗口才有可能（只有发送方收到确认帧才是一定）向前滑动。</p>
+<p>2）从滑动窗口的概念看 ，停止-等待协议、后退 N 帧协议和选择重传协议只在发送窗口大小和接收窗口大小上有所差别 ：</p>
+<p>停止等待协议 ：发送窗口大小 =1，接收窗口大小＝1 ; 后退 N 帧协议：发送窗口大小＞1 ，接收窗口大小=1; 选择重传协议 ：发送窗口大小＞1，接收窗口大小＞1。</p>
+<p>3） 当接收窗口的大小为 1 时，可保证帧的有序接收 。</p>
+<p>4） 数据链路层的滑动窗口协议中 ，窗口的大小在传输过程中是固定的（注意与传输层的滑动窗口协议的区别）。</p>
+<pre><code>可靠传输机制</code></pre><p>数据链路层的可靠传输通常使用确认和超时重传两种机制来完成 。确认是一种无数据的控制帧，这种控制帧使得接收方可以让发送方知道哪些内容被正确接收。有些情况下为了提高传输效率，将确认捎带在一个回复帧中，称为捎带确认 。超时重传是指发送方在发送某一个数据帧以后就开启一个计时器 ，在一定时间内如果没有得到发送的数据帧的确认帧  ，那么就重新发送该数据帧，直到发送成功为止 。</p>
+<p>自动重传请求 （Auto Repeat Request, ARQ ） ，通过接收方请求发送方重传出错的数据帧来恢复出错的帧 ，是通信中用于处理信道所带来差错的方法之一  。传统自动重传请求分为三种，即停-等式 （ Stop-and-Wait) ARQ、后退 N 帧 （ Go-Back-N)  ARQ 以及选择性重传（Selective Repate) ARQ  。后两种协议是滑动窗口技术与请求重发技术的结合 ，由于窗口尺寸开到足够大时，帧在线路上可以连续地流动 ，因此又称其为连续 ARQ协议。注意，在数据链路层中流量控制机制和可靠传输机制是交织在一起的 。</p>
+<p>单帧滑动窗口与停止-等待协议<br>在停止-等待协议中 ，源站发送单个帧后必须等待确认 ，在目的站的回答到达源站之前 ，源站不能发送其他的数据帧 。从滑动窗口机制的角度看 ，停止-等待协议相当于发送窗口和接收窗口大小均为 1 的滑动窗口协议。</p>
+<p>在停止-等待协议中 ，除了数据帧丢失 ，还可能出现以下两种差错 ： 到达目的站的帧可能己遭破坏 ，接收站利用差错检测技术检出后，简单地将该帧丢弃。为了对付这种可能发生的情况，源站装备了计时器 。在一个帧发送之后 ，源站等待确认，如果在计时器计满时仍未收到确认 ，则再次发送相同的帧 。如此重复 ，直到该数据帧无错误地到达为止 。</p>
+<p>另一种可能的差错是数据帧正确而确认帧被破坏  ，此时接收方已经收到了正确的数据帧，但发送方收不到确认帧 ，因此发送方会重传已经被接收的数据帧  ，接收方收到同样的数据帧时会丢弃该帧，并重传一个该帧对应的确认帧 。发送的帧交替地用0和1来标识 ，肯定确认则分别用 ACK0和 ACK1 来表示 ，当收到的确认有误时 ，则重传己发送的帧。</p>
+<p>对于停止-等待协议，由于每发送一个数据帧就停止并等待 ，因此用 1bit 来编号就够 。在停止-等待协议中 ，若连续出现相同发送序号的数据帧 ，表明发送端进行了超时重传。连续出现相同序号的确认帧 ，表明接收端收到了重复帧 。</p>
+<p>此外，为了超时重发和判定重复帧的需要，发送方和接收方都须设置一个帧缓冲区。发送端在发送完数据帧时 ，必须在其发送缓存中保留此数据帧的副本 ，这样才能在出差错时进行重传 。 只有在收到对方发来的确认帧 ACK 时，方可清除此副本 。</p>
+<p>由下图可知，停止-等待协议通信信道的利用率很低 。为了克服这一缺点 ，就产生了另外两种协议 ，即后退 N帧协议和选择重传协议 。</p>
+<p>停止-等待协议中数据帧和确认帧的发送时间关系<br>多帧滑动窗口与后退 N 帧协议 （ GBN )<br>在后退 N 帧式 ARQ 中，发送方不需要在收到上一个帧的 ACK 后才能开始发送下一帧 ，而是可以连续发送帧  。当接收方检测出失序的信息帧后，要求发送方重发最后一个正确接收的信息帧之后的所有未被确认的帧；或者当发送方发送了 N个帧后 ，若发现该 N个帧的前一个帧在计时器超时后仍未返回其确认信息 ，则该帧被判为出错或丢失 ，此时发送方就不得不又重传该出错帧及随后的 N个帧 。换句话说 ，接收方只允许按顺序接收帧 。</p>
+<p>如图所示，源站向目的站发送数据帧 。当源站发完 0 号帧后，可以继续发送后续的 1 号帧、2 号帧等。源站每发送完一帧就要为该帧设置超时计时器 。由于连续发送了许多帧，所以确认帧必须要指明是对哪一帧进行确认 。为了减少开销 ，GBN协议还规定接收端不一定每收到一个正确的数据帧就必须立即发回一个确认帧 ，而是可以在连续收到好几个正确的数据帧后，才对最后一个数据帧发确认信息 ，或者可以在当自己有数据要发送时才将对以前正确收到的帧加以捎带确认 。这就是说 ，对某一数据帧的确认就表明该数据帧和这以前所有的数据帧均己正确无误地收到了。在图中，ACKn 表示对第 n 号帧的确认 ，表示接收方己正确收到了第 n 号帧及以前的所有帧，下一次期望收到第 n+1 号帧 （也可能是第 0 号帧）。接收端只按序接收数据帧 。 虽然在有差错的 2 号帧之后接着又收到了正确的 6 个数据帧，但接收端都必须将这些帧丢弃。接收端虽然丢弃了这些不按序的无差错帧 ，但应重复发送己经发送过的最后一个确认帧 ACK1  （ 这是防止己经发送过的确认帧 ACK1 丢失）。</p>
+<p>后退 N帧协议的接收窗口为1，可以保证按序接收数据帧。若采用n个比特对帧编号 ，则其发送窗口的尺寸 WT 应满足：1 &lt;= WT  &lt;= 2^n - 1。若发送窗口的尺寸大于2^n - 1，则会造成接收方无法分辨新帧和旧帧。</p>
+<p>从图中不难看出 ，后退 N 帧协议一方面因连续发送数据帧而提高了信道的利用率 ，但另一方面，在重传时又必须把原来己传送正确的数据帧进行重传 （仅因这些数据帧的前面有一个数据帧出了错） ，这种做法又使传送效率降低。由此可见，若信道的传输质量很差导致误码率较大时，后退 N帧协议不一定优于停止-等待协议。</p>
+<p>GBN 协议的工作原理 ：对出错数据帧的处理<br>多帧滑动窗口与选择重传协议（SR)<br>为进一步提高信道的利用率 ，可设法只重传出现差错的数据帧或者是计时器超时的数据帧。</p>
+<p>但此时必须加大接收窗口，以便先收下发送序号不连续但仍处在接收窗口中的那些数据帧 。等到所缺序号的数据帧收到后再一并送交主机 。这就是选择重传 ARQ 协议。</p>
+<p>在选择重传协议中 ，每一个发送缓冲区对应一个计时器 ，当计时器超时时，缓冲区的帧就会重传 。另外，该协议使用了比上述其他协议更有效的差错处理策略 ，即一旦接收方怀疑帧出错，就会发一个否定帧 NAK 给发送方 ，要求发送方对 NAK 中指定的帧进行重传 。如图所示。</p>
+<p>选择重传协议<br>选择重传协议的接收窗口尺寸 WR 和发送窗口尺寸 WT 都大于 1，一次可以发送或接收多个帧。若采用n比特对帧编号，为了保证接收方向前移动窗口后 ，新窗口序号与旧窗口序号没有重叠部分，需要满足条件：接收窗口 WR+发送窗口 WT  &lt;= 2^n。假定仍然采用累计确认的方法 ，并且接收窗口 WR 显然不应超过发送窗口 WT （ 否则无意义），那么接收窗口尺寸不应超过序号范围的一半：WR &lt;= 2^(n - 1)。当接收窗口为最大值时 ，WTmax=WRmax=2^(n - 1)。需要提醒读者的是 ，一般情况下，在 SR 协议里面 ，接收窗口的大小和发送窗口的大小是相同的。</p>
+<p>选择重传协议可以避免重复传送那些本己正确到达接收端的数据帧 ，但在接收端要设置具有相当容量的缓冲区来暂存那些未按序正确收到的帧 。接收端不能接收窗口下界以下或窗口上界以上的序号的帧 ，因此所需缓冲区的数目等于窗口的大小 ，而不是序号数目 。</p>
+<p>补充问题<br>在停止-等待协议中 ，确认帧为什么不需要序号（如用 ACK0 和 ACK1 ) ?</p>
+<p>为什么当用n个比特进行编号时 ，若接收窗口的大小为 1，则只有在发送窗口的大小 WT &lt;= 2^n-1 时，连续ARQ 协议才能正确运行 ?</p>
+<p>作者：CodeKing2017<br>链接：<a href="https://www.jianshu.com/p/74ae7306e3e2" target="_blank" rel="noopener">https://www.jianshu.com/p/74ae7306e3e2</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/2019/12/20/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90_%E7%BD%91%E7%BB%9C%E5%B1%82%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%9C%8D%E5%8A%A1/" class="pre-post btn btn-default" title='学习资源_网络层的两种服务'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            学习资源_网络层的两种服务</span>
+    </a>
+    
+    
+    <a href="/2019/12/20/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90_JAVA%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" class="next-post btn btn-default" title='学习资源_JAVA学习路线'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            学习资源_JAVA学习路线</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+
+<div id="vcomments" class="valine"></div>
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/assets/valine.min.js"></script>
+
+<script>
+new Valine({
+    av: AV,
+    el: '#vcomments',
+    appId: 'xOKV9J4UeQAtVkvnJC7Kq2Jn-gzGzoHsz',
+    appKey: 'erIpQac4azoCmgfBB7Dl9maa',
+    placeholder: '说点什么吧',
+    notify: false,
+    verify: true,
+    avatar: 'mm',
+    meta: 'nick,mail'.split(','),
+    pageSize: '10',
+    path: window.location.pathname,
+    lang: 'zh-CN'.toLowerCase()
+})
+</script>
+
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <p>暂无目录</p>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2019
+                    
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+</body>
+</html>

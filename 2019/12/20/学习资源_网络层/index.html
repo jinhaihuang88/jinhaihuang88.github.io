@@ -22,8 +22,7 @@
 <meta name="keywords" content="" />
 
 
-<meta name="description" content="数据链路层的流量控制流量控制涉及对链路上的帧的发送速率的控制 ，以使接收方有足够的缓冲空间来接收每一个帧。流量控制的方法主要有两种：停等流量控制和滑动窗口流量控制
-1.停止-等待流量控制发送实体..." />
+<meta name="description" content="学习资源：网络层本文主要说明网络层提供的两种服务，一种是虚拟电路（Virtual-Circuit 称为VC），另外一种是数据报服务（datagram network）。这两种服务有各自的特点，以..." />
 
 
 <meta name="robots" content="all" />
@@ -34,7 +33,7 @@
 
 <title>
     
-    数据链路层的流量控制 |
+    学习资源_网络层 |
     
     hai的博客
 </title>
@@ -141,9 +140,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="数据链路层的流量控制">
+        <h1 id="学习资源_网络层">
             
-            数据链路层的流量控制
+            学习资源_网络层
             
         </h1>
         <div class="post-meta">
@@ -166,7 +165,7 @@
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
         <span class="date-meta">
-            2019/12/19</span>
+            2019/12/20</span>
     </span>
     
     
@@ -176,12 +175,8 @@
     </div>
     
     <div class="post-body post-content">
-        <h1 id="数据链路层的流量控制"><a href="#数据链路层的流量控制" class="headerlink" title="数据链路层的流量控制"></a>数据链路层的流量控制</h1><p>流量控制涉及对链路上的帧的发送速率的控制 ，以使接收方有足够的缓冲空间来接收每一个帧。流量控制的方法主要有两种：停等流量控制和滑动窗口流量控制</p>
-<h2 id="1-停止-等待流量控制"><a href="#1-停止-等待流量控制" class="headerlink" title="1.停止-等待流量控制"></a>1.停止-等待流量控制</h2><p>发送实体发送一个帧，接受实体接收处理完之后必须发回一个对于这个帧的确认表示自己同意接收下一个帧；发送方收到这个确认之后，才能发送下一个帧。所谓停等，接收方能够简单的通过停止发送确认的方式来阻止数据流的发送。发送方每次只能发送一个帧，然后就陷入了等待接收方确认信息的过程，因此传输的效率十分地低。尤其是利用卫星进行通信的时候，卫星的传播延迟是270毫秒，每发一帧要540毫秒。</p>
-<h2 id="2-滑动窗口流量控制"><a href="#2-滑动窗口流量控制" class="headerlink" title="2.滑动窗口流量控制"></a>2.滑动窗口流量控制</h2><p>发送窗口：在任意的时刻，发送发都维持一组连续的允许发送的帧的序号，称为发送窗口；<br>接受窗口：接受方维持一组连续的允许接受帧的序号。<br>发送窗口是用来对发送方进行流量控制，而发送窗口的大小W<sub>T</sub>代表在还没有收到对方确认信息的情况下发送方最多还可以发送多少个数据帧。同理，在接收端设置接收窗口是为了控制可以接收哪些数据帧而不可以接收哪些帧 。在接收方只有当收到的数据帧的序号落入接收窗口内才允许将该数据帧收下 。若接收到的数据帧落在接收窗口之外 ，则一律将其丢弃。<br>发送窗口和接受窗口的工作原理：<br><img src="/imgs/03-发送窗口.PNG"/><br>发送窗口控制发送端的发送速率<br><img src="/imgs/03-接受窗口.PNG"/>  </p>
-<p>每一个帧都分配有一个序号。在发送端，每收到一个确认帧，发送窗口就向前滑动一个帧的位置，当发送窗口内没有可以发送的帧 ，即窗口内的帧全部都是己发送但未收到确认的帧 ，发送方就会停止发送 ，直到收到接收方发送的确认帧使窗口移动 ，窗口内有可以发送的帧，才开始继续发送 。<br>在接收端，接收端需要按照序号接收，当收到数据帧后 ，将窗口向前移一个帧的位置，并发回确认帧 ，若收到的数据帧落在接收窗口之外则一律丢弃 。</p>
-<h2 id="3-注意点"><a href="#3-注意点" class="headerlink" title="3.注意点"></a>3.注意点</h2><p>（1）为了节省存储控件，序号是循环的。<br/><br>（2）滑动窗口里面的只是序号，滑动到对应的窗口就发送或接受对应的帧，而不是代表窗口里就是这个帧，因为有专门的缓冲区来存这些帧，滑动窗滑到哪里，就在缓冲区中取对应序号的帧.  </p>
-<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h2><p> 相较于停止-等待流量控制，滑动窗口流量控制的效率明显提高了，假设传输延迟和发送时间之和为T，窗口大小为N。如果N&lt;T,那么最多把N个帧一起发送，没法再多发送了，因为循环序号的问题，不能同时存在两个同样序号的帧，所以最多一次发送N个帧，信道会有空闲，效率为N/T。如果N&gt;=T,则效率可以达到100%。 <br/><br> 停止-等待流量控制，滑动窗口流量控制都是通过接受方把自己的反馈（ACK）发送给接收方，发送方通过这个反馈判断接受方的状态再进行发送。停止-等待协议可以看成是发送窗口为1的滑动窗口协议。</p>
+        <h3 id="学习资源：网络层"><a href="#学习资源：网络层" class="headerlink" title="学习资源：网络层"></a>学习资源：网络层</h3><p>本文主要说明网络层提供的两种服务，一种是虚拟电路（Virtual-Circuit 称为VC），另外一种是数据报服务（datagram network）。这两种服务有各自的特点，以下将会详细讨论：<br>1、虚拟电路服务<br>虽然因特网是一个利用数据报服务传输信息的，但是很多其他网络体系结构（例如ATM）使用的是虚拟电路网络。我们先通过电信网来了解虚拟电路，电信网进行的是面向连接的通信方式，使用昂贵的程控交换机（为了保证传输的可靠性），从而向用户提供可靠传输的服务。电信网把用户电话机产生的语音信号可靠地传输到对方的电话机。<br>一条虚拟电路的组成有这些部分构成：<br>（1）源主机和目的主机之间的路径（一些列链路和路由器）<br>（2）路径中每一段链路都有一个VC号<br>（3）路径中的每个路由器都有一个转发表<br>每一次IP数据报跨越一台路由器创建一个新的连接，就在这个路由器的转发表中增加一个新的连接项。同样，每次施放一个链接，就从表中删除这一项。<br>使用虚拟电路服务就一般是通过以下三个步骤：<br>（1）虚拟电路的建立<br>（2）数据传送<br>（3）虚拟电路的拆除<br>最后将简单举例说明第二个步骤，数据传送是怎么进行的：<br>这里有一条线路为A ——&gt; R1 ——&gt; R2 ——&gt; B（其中A和B是主机，R1和R2是路由器），三段链路的VC号码依次是11、22、33，IP数据报离开A的时候，首部中VC字段为11，然后经过了R1，将首部中VC字段变为22，然后经过了R2的时候将首部中的VC字段变为了33。</p>
+<p>2、数据报服务<br>因特网采用的是数据报服务，而不是虚拟电路服务。当时这些先驱者通过对比电信网提供的可靠传输服务，提出了一些看法：电信网采用了可靠传输服务对电话业务是很合适的，原因是电信网的终端也就是电话机非常简单，没有差错处理的高级功能。但是电话服务又必须是可靠的，所以这就必须交给网络线路来处理，将传输变得更加可靠。但是相比电话机，计算机有很强的差错处理功能，所以可以采用另外一种设计思路。<br>网络层上只是简单提供无连接的、简单灵活的、尽最大努力交付的数据报服务。在网络层是不提供可靠传输服务的，所以IP数据报是可能在传输过程中出现错误的。这种设计就使得网络中的路由器可以做的比较简单，而且价格低廉。而进行可靠传输是有主机中的运输层来做的（包括差错处理、流量控制等）（所谓的TCP/IP中的IP是不保证可靠传输的，而是交给了TCP来做的）。<br>时至今日，互联网发展的规模已经非常大了，实践证明了这种思路确实是对的。<br>————————————————<br>版权声明：本文为CSDN博主「nineteen_」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/nineteen_/article/details/50117781" target="_blank" rel="noopener">https://blog.csdn.net/nineteen_/article/details/50117781</a></p>
 
     </div>
     
@@ -200,17 +195,17 @@
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/2019/12/19/%E7%BD%91%E7%BB%9C%E5%B1%82%E6%8F%90%E4%BE%9B%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%9C%8D%E5%8A%A1/" class="pre-post btn btn-default" title='网络层提供的两种服务'>
+    <a href="/2019/12/20/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90_%E7%BD%91%E6%98%93%E4%BA%91%E4%B8%8A%E9%83%A8%E7%BD%B2%E7%BD%91%E7%AB%99/" class="pre-post btn btn-default" title='学习资源_网易云上部署网站'>
         <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
         <span class="hidden-xs">
-            网络层提供的两种服务</span>
+            学习资源_网易云上部署网站</span>
     </a>
     
     
-    <a href="/2019/12/19/CSMA-CA%E5%8D%8F%E8%AE%AE/" class="next-post btn btn-default" title='CSMA-CA协议'>
+    <a href="/2019/12/20/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90_%E7%BD%91%E7%BB%9C%E5%B1%82%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%9C%8D%E5%8A%A1/" class="next-post btn btn-default" title='学习资源_网络层的两种服务'>
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            CSMA-CA协议</span><i class="fa fa-angle-right fa-fw"></i>
+            学习资源_网络层的两种服务</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
 </div>
@@ -251,7 +246,7 @@ new Valine({
             文章目录
         </h3>
         
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#数据链路层的流量控制"><span class="toc-text">数据链路层的流量控制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-停止-等待流量控制"><span class="toc-text">1.停止-等待流量控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-滑动窗口流量控制"><span class="toc-text">2.滑动窗口流量控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-注意点"><span class="toc-text">3.注意点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-总结"><span class="toc-text">4.总结</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#学习资源：网络层"><span class="toc-text">学习资源：网络层</span></a></li></ol>
         
     </div>
 </aside>
